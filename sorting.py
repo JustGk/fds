@@ -67,6 +67,62 @@ def insertion(arr):
     print("SORTED IN ASCENDING ORDER: ", end="")
     print(arr)
     print("---------------------------------------------")
+
+
+
+
+# Python program for implementation of Quicksort Sort
+
+# This function takes last element as pivot, places
+# the pivot element at its correct position in sorted
+# array, and places all smaller (smaller than pivot)
+# to left of pivot and all greater elements to right
+# of pivot
+
+
+def partition(arr, low, high):
+	i = (low-1)		 # index of smaller element
+	pivot = arr[high]	 # pivot
+
+	for j in range(low, high):
+
+		# If current element is smaller than or
+		# equal to pivot
+		if arr[j] <= pivot:
+
+			# increment index of smaller element
+			i = i+1
+			arr[i], arr[j] = arr[j], arr[i]
+
+	arr[i+1], arr[high] = arr[high], arr[i+1]
+	return (i+1)
+
+# The main function that implements QuickSort
+# arr[] --> Array to be sorted,
+# low --> Starting index,
+# high --> Ending index
+
+# Function to do Quick sort
+
+
+def quickSort(arr, low, high):
+	if len(arr) == 1:
+		return arr
+	if low < high:
+
+		# pi is partitioning index, arr[p] is now
+		# at right place
+		pi = partition(arr, low, high)
+
+		# Separately sort elements before
+		# partition and after partition
+		quickSort(arr, low, pi-1)
+		quickSort(arr, pi+1, high)
+
+
+    # This code is contributed by Mohit Kumra
+    #This code in improved by https://github.com/anushkrishnav
+
 if __name__ == '__main__':
     arr=[]
     def creat():
@@ -82,6 +138,7 @@ if __name__ == '__main__':
         print("FOR BUBBLE SORT TYPE 1")
         print("FOR SELECTION SORT TYPE 2")
         print("FOR INSERTION SORT TYPE 3")
+        print("FOR QUICK SORT TYPE 4")
         choice=int(input("ENTER YOUR CHOICE: "))
         if choice==1:
             creat()
@@ -92,5 +149,13 @@ if __name__ == '__main__':
         elif choice==3:
             creat()
             insertion(arr)
+        elif choice==4:
+            creat()
+            quickSort(arr,0,len(arr)-1)
+            print("Sorted array is:")
+
+            for i in range(len(arr)):
+                print("%d" % arr[i],end=" ")
+                print("\n\n")
         else:
             break
