@@ -71,8 +71,8 @@ if __name__ == '__main__':
             result = binary_search(arr, 0, len(arr) - 1, search)
 
             if result != -1:
-                print("Element is present at index", str(result))
-            else:
+                print("Element is present at position", str(result+1))
+            elif result==-1:
                 print("Element is not present in array")
         else:
             break
